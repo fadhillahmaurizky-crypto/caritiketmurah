@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CariTiketMurah.com — Harga Tiket Termurah Se-Indonesia</title>
+<meta name="description" content="Bandingkan harga tiket pesawat dari Traveloka, Tiket.com, Agoda, Tokopedia & Pegipegi. AI deteksi error fare & hidden deals otomatis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<style>
+:root{
+  --blue:#1A56DB;--blue-d:#1041A8;--blue-l:#EBF2FF;
+  --green:#057A55;--green-l:#DEF7EC;
+  --amber:#BA7517;--amber-l:#FAEEDA;
+  --red:#A32D2D;--red-l:#FCEBEB;
+  --gray-50:#F9FAFB;--gray-100:#F3F4F6;--gray-200:#E5E7EB;
+  --gray-300:#D1D5DB;--gray-400:#9CA3AF;--gray-500:#6B7280;
+  --gray-600:#4B5563;--gray-700:#374151;--gray-800:#1F2937;--gray-900:#111827;
+  --white:#fff;
+  --r-sm:8px;--r-md:12px;--r-lg:16px;
+  --shadow:0 1px 3px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.05);
+  --shadow-md:0 4px 16px rgba(0,0,0,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#F8FAFC;color:var(--gray-900);min-height:100vh;font-size:15px;line-height:1.6}
+
+/* NAV */
+nav{background:var(--white);border-bottom:1px solid var(--gray-200);position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:center;padding:0 32px}
+.nav-in{max-width:1200px;width:100%;margin:0 auto;display:flex;align-items:center;gap:32px}
+.logo{font-size:18px;font-weight:700;color:var(--gray-900);text-decoration:none;display:flex;align-items:center;gap:8px;flex-shrink:0}
+.logo-icon{width:32px;height:32px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
+.logo span{color:var(--blue)}
+.nav-links{display:flex;gap:2px;flex:1}
+.nav-links a{font-size:14px;color:var(--gray-600);text-decoration:none;padding:6px 14px;border-radius:8px;transition:.15s}
+.nav-links a:hover{background:var(--gray-100);color:var(--gray-900)}
+.nav-right{display:flex;align-items:center;gap:10px;margin-left:auto}
+.btn-outline{font-size:13px;font-weight:500;padding:7px 16px;border:1px solid var(--gray-200);border-radius:8px;background:var(--white);color:var(--gray-700);cursor:pointer;font-family:inherit;transition:.15s}
+.btn-outline:hover{border-color:var(--gray-400);color:var(--gray-900)}
+.btn-primary{font-size:13px;font-weight:600;padding:7px 16px;border:none;border-radius:8px;background:var(--blue);color:#fff;cursor:pointer;font-family:inherit;transition:.15s}
+.btn-primary:hover{background:var(--blue-d)}
+
+/* HERO */
+.hero{background:var(--gray-900);padding:64px 32px 0;overflow:hidden;position:relative}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 0%,#1e3a8a22 0%,transparent 70%)}
+.hero-in{max-width:1200px;margin:0 auto;position:relative}
+.hero-top{text-align:center;max-width:720px;margin:0 auto 48px}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:#93C5FD;font-size:12px;font-weight:500;padding:5px 14px;border-radius:99px;margin-bottom:24px}
+.badge-dot{width:6px;height:6px;background:#4ADE80;border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-size:clamp(28px,4.5vw,48px);font-weight:700;color:#fff;line-height:1.15;margin-bottom:14px;letter-spacing:-.5px}
+.hero h1 em{font-style:normal;color:#60A5FA}
+.hero p{font-size:17px;color:#94A3B8;line-height:1.65}
+
+/* SEARCH CARD */
+.search-wrap{background:var(--white);border-radius:var(--r-lg) var(--r-lg) 0 0;padding:0;box-shadow:var(--shadow-md);overflow:hidden}
+.search-tabs{display:flex;border-bottom:1px solid var(--gray-100);padding:0 28px}
+.stab{display:flex;align-items:center;gap:7px;padding:16px 14px;font-size:14px;font-weight:500;color:var(--gray-400);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:.15s;white-space:nowrap}
+.stab:hover{color:var(--gray-700)}
+.stab.on{color:var(--blue);border-bottom-color:var(--blue)}
+.stab i{font-size:17px}
+.search-body{padding:24px 28px 28px}
+.trip-opts{display:flex;gap:6px;margin-bottom:20px}
+.trip-opt{font-size:13px;padding:5px 14px;border:1px solid var(--gray-200);border-radius:99px;cursor:pointer;color:var(--gray-600);transition:.15s}
+.trip-opt.on{background:var(--blue-l);border-color:var(--blue);color:var(--blue);font-weight:500}
+.form-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto;gap:12px;align-items:end}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg label{font-size:11px;font-weight:600;color:var(--gray-400);letter-spacing:.07em;text-transform:uppercase}
+.fg input,.fg select{height:44px;font-size:14px;color:var(--gray-900);border:1.5px solid var(--gray-200);border-radius:var(--r-sm);padding:0 14px;background:var(--white);transition:.15s;font-family:inherit;width:100%}
+.fg input:focus,.fg select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px #1a56db18}
+.swap-btn{position:absolute;top:50%;right:-16px;transform:translateY(-50%);width:28px;height:28px;background:var(--white);border:1.5px solid var(--gray-200);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--gray-400);font-size:14px;transition:.15s}
+.swap-btn:hover{border-color:var(--blue);color:var(--blue)}
+.route-wrap{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn-search-big{height:44px;padding:0 28px;background:var(--blue);color:#fff;font-size:15px;font-weight:600;border:none;border-radius:var(--r-sm);cursor:pointer;font-family:inherit;transition:.15s;white-space:nowrap;display:flex;align-items:center;gap:8px}
+.btn-search-big:hover{background:var(--blue-d);transform:translateY(-1px)}
+.btn-search-big:active{transform:translateY(0)}
+
+/* MAIN */
+.main{max-width:1200px;margin:0 auto;padding:32px 32px 64px}
+.layout{display:grid;grid-template-columns:264px 1fr;gap:24px;align-items:start}
+
+/* SIDEBAR */
+.sidebar-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--r-md);overflow:hidden;margin-bottom:14px}
+.sc-head{padding:14px 18px;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--gray-800)}
+.sc-head i{font-size:16px;color:var(--blue)}
+.sc-body{padding:16px 18px}
+.filter-sect{margin-bottom:16px}
+.filter-sect:last-child{margin-bottom:0}
+.fsect-label{font-size:11px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.fcheck{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--gray-700);padding:5px 0;cursor:pointer}
+.fcheck input{accent-color:var(--blue);width:15px;height:15px;cursor:pointer}
+.price-slider{width:100%;accent-color:var(--blue);cursor:pointer;margin:8px 0}
+.slider-labels{display:flex;justify-content:space-between;font-size:12px;color:var(--gray-400)}
+
+/* AI PANEL */
+.ai-panel{background:var(--white);border:1px solid #BFDBFE;border-radius:var(--r-md);padding:16px 18px;margin-bottom:14px}
+.ai-header{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.ai-live{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--blue)}
+.ai-dot{width:6px;height:6px;background:#22C55E;border-radius:50%;animation:pulse 2s infinite}
+.ai-body{font-size:13px;color:var(--gray-600);line-height:1.6;margin-bottom:12px}
+.ai-chips{display:flex;flex-direction:column;gap:6px}
+.ai-chip{font-size:12px;padding:7px 12px;border:1px solid var(--gray-200);border-radius:var(--r-sm);cursor:pointer;color:var(--gray-700);text-align:left;transition:.15s;background:var(--white);font-family:inherit}
+.ai-chip:hover{background:var(--blue-l);border-color:#93C5FD;color:var(--blue)}
+
+/* RESULTS HEADER */
+.results-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.results-count{font-size:14px;color:var(--gray-500)}
+.results-count strong{color:var(--gray-900);font-weight:600}
+.sort-row{display:flex;align-items:center;gap:8px}
+.sort-label{font-size:13px;color:var(--gray-400)}
+select.sort{font-size:13px;padding:6px 12px;border:1px solid var(--gray-200);border-radius:var(--r-sm);background:var(--white);color:var(--gray-700);cursor:pointer;font-family:inherit}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+.stat{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--r-sm);padding:14px 16px;text-align:center}
+.stat-n{font-size:22px;font-weight:700;color:var(--gray-900)}
+.stat-n.c-blue{color:var(--blue)}
+.stat-n.c-green{color:var(--green)}
+.stat-n.c-amber{color:var(--amber)}
+.stat-l{font-size:11px;color:var(--gray-400);margin-top:2px;font-weight:500}
+
+/* ERROR FARE BANNER */
+.ef-banner{background:#FFFBEB;border:1px solid #FCD34D;border-radius:var(--r-md);padding:14px 18px;margin-bottom:18px;display:flex;gap:12px;align-items:flex-start}
+.ef-icon{color:#D97706;font-size:20px;flex-shrink:0;margin-top:1px}
+.ef-title{font-size:14px;font-weight:600;color:#92400E;margin-bottom:3px}
+.ef-txt{font-size:13px;color:#B45309;line-height:1.5}
+
+/* RESULT CARD */
+.rcard{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--r-md);padding:20px 22px;margin-bottom:10px;transition:.2s;cursor:default}
+.rcard:hover{border-color:#93C5FD;box-shadow:0 4px 20px rgba(26,86,219,.08)}
+.rcard.is-deal{border-left:3px solid var(--green);padding-left:20px}
+.rcard.is-error{border-left:3px solid #F59E0B;padding-left:20px}
+.card-top{display:flex;align-items:center;gap:14px}
+.airline-ico{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.card-main{flex:1;min-width:0}
+.route-row{display:flex;align-items:center;gap:10px}
+.t-dep,.t-arr{font-size:21px;font-weight:700;color:var(--gray-900);letter-spacing:-.3px}
+.route-mid{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px}
+.route-line{width:100%;height:1px;background:var(--gray-200);position:relative}
+.route-line::after{content:'';position:absolute;right:0;top:-3px;width:7px;height:7px;border-top:1px solid var(--gray-300);border-right:1px solid var(--gray-300);transform:rotate(45deg)}
+.route-dur{font-size:11px;color:var(--gray-400);font-weight:500}
+.card-sub{font-size:12px;color:var(--gray-500);margin-top:5px;display:flex;align-items:center;gap:8px}
+.dot-sep{color:var(--gray-300)}
+.price-col{text-align:right;flex-shrink:0}
+.p-orig{font-size:12px;color:var(--gray-400);text-decoration:line-through;margin-bottom:1px}
+.p-final{font-size:24px;font-weight:700;color:var(--gray-900);letter-spacing:-.5px;line-height:1}
+.p-final.is-cheap{color:var(--green)}
+.p-badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:99px;margin-top:5px}
+.pb-deal{background:var(--green-l);color:#065F46}
+.pb-error{background:#FFFBEB;color:#92400E}
+.pb-normal{background:var(--gray-100);color:var(--gray-500)}
+.pb-hot{background:var(--red-l);color:#7F1D1D}
+.card-note{font-size:12px;padding:8px 12px;border-radius:var(--r-sm);margin-top:12px}
+.note-deal{background:var(--green-l);color:#065F46}
+.note-error{background:#FFFBEB;color:#92400E}
+.card-divider{border:none;border-top:1px solid var(--gray-100);margin:14px 0}
+.card-bot{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.providers{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.prov-label{font-size:11px;color:var(--gray-400);font-weight:600;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
+.prov-pill{font-size:12px;padding:5px 11px;border:1px solid var(--gray-200);border-radius:99px;color:var(--gray-600);cursor:pointer;transition:.15s;white-space:nowrap}
+.prov-pill:hover{background:var(--gray-50);border-color:var(--gray-400)}
+.prov-pill.best{background:var(--blue);color:#fff;border-color:var(--blue);font-weight:600}
+.btn-book{background:var(--blue);color:#fff;font-size:14px;font-weight:600;padding:11px 22px;border:none;border-radius:var(--r-sm);cursor:pointer;font-family:inherit;transition:.15s;white-space:nowrap;display:flex;align-items:center;gap:7px}
+.btn-book:hover{background:var(--blue-d)}
+.aff-note{font-size:11px;color:var(--gray-300);margin-top:8px;font-style:italic}
+
+/* LOADING */
+.loading{display:flex;flex-direction:column;align-items:center;padding:64px 0;gap:18px}
+.spin{width:36px;height:36px;border:3px solid var(--gray-200);border-top-color:var(--blue);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-txt{font-size:14px;color:var(--gray-500)}
+.loading-chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center}
+.l-chip{font-size:12px;padding:4px 12px;background:var(--gray-100);border-radius:99px;color:var(--gray-400);animation:fadeUp .4s ease forwards;opacity:0}
+@keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+/* ALERT */
+.alert-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--r-md);padding:20px 22px;margin-top:20px}
+.alert-ttl{font-size:15px;font-weight:600;color:var(--gray-900);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.alert-sub{font-size:13px;color:var(--gray-500);margin-bottom:16px}
+.alert-form{display:grid;grid-template-columns:1fr 1fr auto;gap:10px}
+.alert-inp{height:40px;font-size:14px;border:1.5px solid var(--gray-200);border-radius:var(--r-sm);padding:0 12px;font-family:inherit;color:var(--gray-900);width:100%}
+.alert-inp:focus{outline:none;border-color:var(--blue)}
+.btn-alert{height:40px;padding:0 18px;background:var(--green);color:#fff;font-size:14px;font-weight:600;border:none;border-radius:var(--r-sm);cursor:pointer;font-family:inherit;white-space:nowrap}
+.btn-alert:hover{background:#046C4E}
+.alert-list{margin-top:14px;display:flex;flex-direction:column;gap:8px}
+.a-item{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--r-sm);font-size:13px}
+.a-route{font-weight:600;flex:1}
+.a-price{color:var(--green);font-weight:700}
+.a-del{background:none;border:none;color:var(--gray-300);cursor:pointer;font-size:17px;padding:2px;margin-left:auto;transition:.15s}
+.a-del:hover{color:var(--red)}
+
+/* EMPTY */
+.empty{text-align:center;padding:56px 0;color:var(--gray-400)}
+.empty i{font-size:40px;margin-bottom:12px;display:block}
+
+/* TRUST */
+.trust{border-top:1px solid var(--gray-200);background:var(--white);padding:16px 32px}
+.trust-in{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:36px;flex-wrap:wrap}
+.t-item{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--gray-500)}
+.t-item i{font-size:16px;color:var(--blue)}
+
+/* FOOTER */
+footer{background:var(--gray-900);padding:48px 32px 28px;color:var(--gray-400)}
+.ft-in{max-width:1200px;margin:0 auto}
+.ft-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.ft-brand{font-size:18px;font-weight:700;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.ft-brand-ico{width:28px;height:28px;background:var(--blue);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff}
+.ft-desc{font-size:13px;line-height:1.7;color:#6B7280}
+.ft-aff{font-size:11px;color:#4B5563;margin-top:8px}
+.ft-col h4{font-size:12px;font-weight:600;color:#9CA3AF;text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px}
+.ft-col a{display:block;font-size:13px;color:#6B7280;text-decoration:none;padding:4px 0;transition:.15s}
+.ft-col a:hover{color:#fff}
+.ft-bot{border-top:1px solid #1F2937;padding-top:20px;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:#4B5563}
+
+@media(max-width:1024px){
+  .layout{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .ft-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  nav{padding:0 16px}
+  .hero{padding:44px 16px 0}
+  .search-body{padding:16px}
+  .form-grid{grid-template-columns:1fr}
+  .main{padding:20px 16px 48px}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .alert-form{grid-template-columns:1fr}
+  .ft-top{grid-template-columns:1fr}
+  .nav-links,.nav-right .btn-outline{display:none}
+}
+
+/* AUTOCOMPLETE */
+.autocomplete-dd{
+  position:absolute;top:calc(100% + 4px);left:0;right:0;
+  background:var(--white);border:1.5px solid var(--blue);
+  border-radius:var(--r-sm);box-shadow:var(--shadow-md);
+  z-index:500;max-height:280px;overflow-y:auto;
+}
+.ac-item{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 14px;cursor:pointer;transition:.1s;
+  border-bottom:1px solid var(--gray-100);
+}
+.ac-item:last-child{border-bottom:none}
+.ac-item:hover{background:var(--blue-l)}
+.ac-icon{width:32px;height:32px;border-radius:7px;background:var(--gray-100);display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:15px;flex-shrink:0}
+.ac-main{flex:1}
+.ac-name{font-size:14px;font-weight:500;color:var(--gray-900)}
+.ac-code{font-size:11px;color:var(--gray-400);margin-top:1px}
+.ac-badge{font-size:10px;padding:2px 7px;border-radius:99px;background:var(--blue-l);color:var(--blue);font-weight:600;flex-shrink:0}
+
+/* MODAL */
+.modal-title{font-size:20px;font-weight:700;color:var(--gray-900);margin-bottom:6px}
+.modal-sub{font-size:14px;color:var(--gray-500);margin-bottom:24px}
+.modal-inp{width:100%;height:44px;font-size:14px;border:1.5px solid var(--gray-200);border-radius:var(--r-sm);padding:0 14px;font-family:inherit;color:var(--gray-900);margin-bottom:12px}
+.modal-inp:focus{outline:none;border-color:var(--blue)}
+.modal-btn{width:100%;height:44px;background:var(--blue);color:#fff;font-size:15px;font-weight:600;border:none;border-radius:var(--r-sm);cursor:pointer;font-family:inherit;margin-top:4px}
+.modal-btn:hover{background:var(--blue-d)}
+.modal-switch{text-align:center;margin-top:16px;font-size:14px;color:var(--gray-500)}
+.modal-switch a{color:var(--blue);cursor:pointer;text-decoration:none;font-weight:500}
+.modal-divider{display:flex;align-items:center;gap:12px;margin:16px 0;color:var(--gray-300);font-size:13px}
+.modal-divider::before,.modal-divider::after{content:'';flex:1;height:1px;background:var(--gray-200)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a href="#" class="logo">
+      <div class="logo-ico" style="width:32px;height:32px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff">
+        <i class="ti ti-ticket" style="font-size:17px"></i>
+      </div>
+      CariTiketMurah<span style="color:var(--blue)">.com</span>
+    </a>
+    <div class="nav-links">
+      <a href="#" onclick="switchTabByName('pesawat')"><i class="ti ti-plane" style="font-size:15px;vertical-align:-2px;margin-right:4px"></i>Pesawat</a>
+      <a href="#" onclick="switchTabByName('hotel')"><i class="ti ti-building" style="font-size:15px;vertical-align:-2px;margin-right:4px"></i>Hotel</a>
+      <a href="#" onclick="switchTabByName('kereta')"><i class="ti ti-train" style="font-size:15px;vertical-align:-2px;margin-right:4px"></i>Kereta</a>
+      <a href="#" onclick="switchTabByName('bus')"><i class="ti ti-bus" style="font-size:15px;vertical-align:-2px;margin-right:4px"></i>Bus</a>
+      <a href="#" onclick="switchTabByName('paket')"><i class="ti ti-map-pin" style="font-size:15px;vertical-align:-2px;margin-right:4px"></i>Paket Wisata</a>
+      <a href="#" onclick="switchTabByName('event')" style="color:var(--blue);font-weight:600"><i class="ti ti-ticket" style="font-size:15px;vertical-align:-2px;margin-right:4px"></i>Event<span style="font-size:10px;background:#FEF3C7;color:#92400E;padding:2px 6px;border-radius:99px;margin-left:5px;font-weight:600">BARU</span></a>
+      <a href="#" onclick="switchTabByName('errorfares')" style="color:#D97706;font-weight:600"><i class="ti ti-bolt" style="font-size:15px;vertical-align:-2px;margin-right:4px"></i>Error Fares</a>
+    </div>
+    <div class="nav-right">
+      <button class="btn-outline" onclick="showModal('login')"><i class="ti ti-user" style="font-size:14px;vertical-align:-2px;margin-right:5px"></i>Masuk</button>
+      <button class="btn-primary" onclick="showModal('register')">Daftar Gratis</button>
+    </div>
+  </div>
+</nav>
+
+<!-- AUTH MODAL -->
+<div id="auth-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999;align-items:center;justify-content:center">
+  <div style="background:var(--white);border-radius:var(--r-lg);padding:32px;width:100%;max-width:400px;margin:16px;position:relative">
+    <button onclick="closeModal()" style="position:absolute;top:14px;right:14px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--gray-400)"><i class="ti ti-x"></i></button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-in">
+    <div class="hero-top">
+      <div class="hero-badge">
+        <div class="badge-dot"></div>
+        Kami aktif memindai 5 platform secara real-time
+      </div>
+      <h1>Harga Termurah<br><em>dari Semua Platform</em></h1>
+      <p>Bandingkan Traveloka, Tiket.com, Agoda, Tokopedia & Pegipegi sekaligus.<br>Kami deteksi error fare & hidden deals secara otomatis.</p>
+    </div>
+
+    <div class="search-wrap">
+      <div class="search-tabs">
+        <div class="stab on" onclick="switchTab(this)"><i class="ti ti-plane"></i> Pesawat</div>
+        <div class="stab" onclick="switchTab(this)"><i class="ti ti-building"></i> Hotel</div>
+        <div class="stab" onclick="switchTab(this)"><i class="ti ti-train"></i> Kereta</div>
+        <div class="stab" onclick="switchTab(this)"><i class="ti ti-bus"></i> Bus</div>
+        <div class="stab" onclick="switchTab(this)"><i class="ti ti-map-pin"></i> Paket Wisata</div>
+        <div class="stab" onclick="switchTab(this)" style="color:#D97706"><i class="ti ti-ticket"></i> Event</div>
+      </div>
+      <div class="search-body">
+        <div class="trip-opts" id="trip-opts">
+          <div class="trip-opt on" onclick="setTrip(this)">Sekali Jalan</div>
+          <div class="trip-opt" onclick="setTrip(this)">Pulang Pergi</div>
+          <div class="trip-opt" onclick="setTrip(this)">Multi-kota</div>
+        </div>
+        <div class="form-grid">
+          <div class="route-wrap" style="grid-column:span 2">
+            <div class="fg" style="position:relative">
+              <label id="from-lbl">Dari</label>
+              <input type="text" id="from" value="Jakarta (CGK)" placeholder="Kota asal" autocomplete="off" oninput="showDropdown('from')" onfocus="showDropdown('from')" onblur="hideDropdown('from-dd',300)">
+              <div id="from-dd" class="autocomplete-dd" style="display:none"></div>
+            </div>
+            <button class="swap-btn" id="swap-btn" onclick="swapCities()" title="Tukar kota"><i class="ti ti-arrows-exchange" style="font-size:15px"></i></button>
+            <div class="fg" id="to-wrap" style="position:relative">
+              <label id="to-lbl">Ke</label>
+              <input type="text" id="to" value="Bali (DPS)" placeholder="Tujuan" autocomplete="off" oninput="showDropdown('to')" onfocus="showDropdown('to')" onblur="hideDropdown('to-dd',300)">
+              <div id="to-dd" class="autocomplete-dd" style="display:none"></div>
+            </div>
+          </div>
+          <div class="fg">
+            <label>Tanggal Pergi</label>
+            <input type="date" id="dept" value="2025-07-15">
+          </div>
+          <div class="fg">
+            <label id="pax-lbl">Penumpang & Kelas</label>
+            <select id="pax">
+              <option>1 Dewasa · Ekonomi</option>
+              <option>2 Dewasa · Ekonomi</option>
+              <option>1 Dewasa · Bisnis</option>
+              <option>2 Dewasa · Bisnis</option>
+            </select>
+          </div>
+          <div>
+            <button class="btn-search-big" onclick="doSearch()">
+              <i class="ti ti-search"></i> Cari Sekarang
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="main">
+  <div class="layout">
+    <aside>
+      <div class="ai-panel" id="ai-panel" style="display:none">
+        <div class="ai-header">
+          <div class="ai-dot"></div>
+          <div class="ai-live">AI Insight</div>
+        </div>
+        <div class="ai-body" id="ai-body">Menganalisis...</div>
+        <div class="ai-chips" id="ai-chips"></div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sc-head"><i class="ti ti-adjustments-horizontal"></i> Filter</div>
+        <div class="sc-body">
+          <div class="filter-sect">
+            <div class="fsect-label">Penerbangan</div>
+            <label class="fcheck"><input type="checkbox" id="f-direct" onchange="doSearch()"> Langsung saja</label>
+            <label class="fcheck"><input type="checkbox" id="f-promo" onchange="doSearch()"> Ada promo aktif</label>
+            <label class="fcheck"><input type="checkbox" id="f-errorfares" onchange="doSearch()"> Error fares</label>
+          </div>
+          <div class="filter-sect">
+            <div class="fsect-label">Maskapai</div>
+            <label class="fcheck"><input type="checkbox" checked> Garuda Indonesia</label>
+            <label class="fcheck"><input type="checkbox" checked> Citilink</label>
+            <label class="fcheck"><input type="checkbox" checked> Lion Air</label>
+            <label class="fcheck"><input type="checkbox" checked> Batik Air</label>
+            <label class="fcheck"><input type="checkbox" checked> AirAsia</label>
+          </div>
+          <div class="filter-sect">
+            <div class="fsect-label">Budget maksimum</div>
+            <input type="range" class="price-slider" min="300000" max="3000000" step="50000" value="3000000" id="pslider" oninput="updateSlider(this)">
+            <div class="slider-labels"><span>Rp 300rb</span><span id="pmax-lbl">Semua</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sc-head"><i class="ti ti-bell"></i> Price Alert Saya</div>
+        <div class="sc-body">
+          <div id="sidebar-alerts"><p style="font-size:13px;color:var(--gray-400)">Belum ada alert aktif.</p></div>
+        </div>
+      </div>
+    </aside>
+
+    <div>
+      <div id="results-col">
+        <div class="empty">
+          <i class="ti ti-plane-departure"></i>
+          <div style="font-size:16px;font-weight:600;color:var(--gray-600);margin-bottom:6px">Cari tiket termurah sekarang</div>
+          <div style="font-size:14px">Masukkan rute & tanggal, AI scan 5+ platform sekaligus</div>
+        </div>
+      </div>
+
+      <div class="alert-card" id="alert-section" style="display:none">
+        <div class="alert-ttl"><i class="ti ti-bell-ringing" style="color:var(--blue)"></i> Set Price Alert</div>
+        <div class="alert-sub">Dapat notifikasi kalau harga turun di bawah target kamu.</div>
+        <div class="alert-form">
+          <input class="alert-inp" id="alrt-route" placeholder="Rute (cth: CGK → DPS)" type="text">
+          <input class="alert-inp" id="alrt-price" placeholder="Target harga (Rp)" type="number">
+          <button class="btn-alert" onclick="addAlert()">+ Tambah</button>
+        </div>
+        <div class="alert-list" id="alert-list"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="trust">
+  <div class="trust-in">
+    <div class="t-item"><i class="ti ti-checks"></i> <span><strong>5 Platform</strong> dibandingkan sekaligus</span></div>
+    <div class="t-item"><i class="ti ti-refresh"></i> <span>Update <strong>real-time</strong> setiap jam</span></div>
+    <div class="t-item"><i class="ti ti-robot"></i> <span>AI deteksi <strong>error fare</strong> otomatis</span></div>
+    <div class="t-item"><i class="ti ti-bell"></i> <span><strong>Price alert</strong> gratis tanpa batas</span></div>
+    <div class="t-item"><i class="ti ti-shield-check"></i> <span><strong>0% markup</strong> — kami bukan OTA</span></div>
+  </div>
+</div>
+
+<footer>
+  <div class="ft-in">
+    <div class="ft-top">
+      <div>
+        <div class="ft-brand">
+          <div class="ft-brand-ico"><i class="ti ti-plane-tilt" style="font-size:14px"></i></div>
+          CariTiketMurah.com
+        </div>
+        <div class="ft-desc">Platform perbandingan harga tiket bertenaga AI. Kami tidak menjual tiket langsung — kami mengarahkan ke platform resmi dengan harga terbaik untuk kamu.</div>
+        <div class="ft-aff">* Link pemesanan menggunakan program afiliasi resmi dari masing-masing platform.</div>
+      </div>
+      <div class="ft-col">
+        <h4>Produk</h4>
+        <a href="#">Cari Pesawat</a>
+        <a href="#">Cari Hotel</a>
+        <a href="#">Cari Kereta</a>
+        <a href="#">Error Fare Tracker</a>
+        <a href="#">Price Alert</a>
+      </div>
+      <div class="ft-col">
+        <h4>Perusahaan</h4>
+        <a href="#">Tentang Kami</a>
+        <a href="#">Blog Travel</a>
+        <a href="#">Karir</a>
+        <a href="#">Kontak</a>
+      </div>
+      <div class="ft-col">
+        <h4>Legal</h4>
+        <a href="#">Kebijakan Privasi</a>
+        <a href="#">Syarat & Ketentuan</a>
+        <a href="#">Disclaimer</a>
+        <a href="#">Program Afiliasi</a>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <div>© 2025 CariTiketMurah.com · Dibuat dengan <i class="ti ti-heart" style="color:#E24B4A;font-size:13px;vertical-align:-2px"></i> di Indonesia</div>
+      <div>Bertenaga AI · Gratis untuk semua</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const FLIGHTS=[
+  {id:"f1",airline:"Lion Air",code:"JT-007",dep:"06:00",arr:"08:50",dur:"2j 50m",direct:true,
+   prices:{traveloka:850000,tiket:820000,pegipegi:835000},normal:950000,deal:"normal"},
+  {id:"f2",airline:"Garuda Indonesia",code:"GA-404",dep:"08:15",arr:"11:05",dur:"2j 50m",direct:true,
+   prices:{traveloka:1450000,tiket:1420000,agoda:1380000},normal:1850000,deal:"deal",
+   note:"Harga 25% di bawah rata-rata historis 30 hari terakhir"},
+  {id:"f3",airline:"Citilink",code:"QG-888",dep:"14:30",arr:"17:20",dur:"2j 50m",direct:true,
+   prices:{traveloka:410000,tiket:395000,pegipegi:420000,tokopedia:389000},normal:650000,deal:"error",
+   note:"AI mendeteksi harga 40% di bawah normal — kemungkinan error fare, pesan segera!"},
+  {id:"f4",airline:"AirAsia",code:"QZ-123",dep:"18:45",arr:"21:35",dur:"2j 50m",direct:true,
+   prices:{traveloka:620000,tiket:595000,agoda:580000},normal:700000,deal:"normal"},
+  {id:"f5",airline:"Batik Air",code:"ID-220",dep:"20:00",arr:"22:50",dur:"2j 50m",direct:true,
+   prices:{traveloka:780000,tiket:760000,tokopedia:745000},normal:890000,deal:"deal",
+   note:"Flash sale aktif — berakhir dalam 2 jam 14 menit"},
+];
+const PNAMES={traveloka:"Traveloka",tiket:"Tiket.com",agoda:"Agoda",tokopedia:"Tokopedia",pegipegi:"Pegipegi"};
+const ACOLORS={"Garuda Indonesia":["#1D4ED8","#EFF6FF"],"Citilink":["#065F46","#ECFDF5"],"Lion Air":["#991B1B","#FEF2F2"],"Batik Air":["#5B21B6","#F5F3FF"],"AirAsia":["#991B1B","#FEF2F2"]};
+
+// Kode IATA dari nama kota
+const IATA={
+  "Jakarta (CGK)":"CGK","Bali (DPS)":"DPS","Surabaya (SUB)":"SUB",
+  "Medan (KNO)":"KNO","Makassar (UPG)":"UPG","Yogyakarta (JOG)":"JOG",
+  "Lombok (LOP)":"LOP","Balikpapan (BPN)":"BPN","Manado (MDC)":"MDC",
+  "Bandung (BDO)":"BDO","Semarang (SRG)":"SRG","Palembang (PLM)":"PLM",
+  "Batam (BTH)":"BTH","Pekanbaru (PKU)":"PKU","Pontianak (PNK)":"PNK",
+};
+function getIATA(city){
+  return IATA[city]||city.match(/\(([A-Z]{3})\)/)?.[1]||city.substring(0,3).toUpperCase();
+}
+
+function getDeepLink(prov, from, to, date, airline, flightCode){
+  const org=getIATA(from);
+  const dst=getIATA(to);
+  // Format tanggal: YYYY-MM-DD → sesuai kebutuhan tiap platform
+  const d=new Date(date);
+  const yyyy=d.getFullYear();
+  const mm=String(d.getMonth()+1).padStart(2,"0");
+  const dd=String(d.getDate()).padStart(2,"0");
+  const dateSlash=`${dd}/${mm}/${yyyy}`;  // DD/MM/YYYY
+  const dateDash=`${yyyy}-${mm}-${dd}`;   // YYYY-MM-DD
+
+  switch(prov){
+    case "traveloka":
+      // Traveloka deep link: /id-id/flight/search?spec=1.CGK.DPS.20250715.1
+      return `https://www.traveloka.com/id-id/flight/search?spec=1.${org}.${dst}.${yyyy}${mm}${dd}.1`;
+    case "tiket":
+      // Tiket.com: /pesawat/search?src=CGK&dst=DPS&date=2025-07-15&pax=1
+      return `https://www.tiket.com/pesawat/search?src=${org}&dst=${dst}&date=${dateDash}&pax=1&adult=1&child=0&infant=0`;
+    case "agoda":
+      // Agoda Flights: /flights/results?origin=CGK&destination=DPS&departureDate=2025-07-15&adults=1
+      return `https://www.agoda.com/flights/results?origin=${org}&destination=${dst}&departureDate=${dateDash}&adults=1&cabinClass=Economy`;
+    case "tokopedia":
+      // Tokopedia tiket pesawat
+      return `https://www.tokopedia.com/tiket-pesawat/${org.toLowerCase()}-ke-${dst.toLowerCase()}?departureDate=${dateDash}&adult=1`;
+    case "pegipegi":
+      // Pegipegi: /flight/search?from=CGK&to=DPS&date=15-07-2025&adult=1
+      return `https://www.pegipegi.com/flight/search/?from=${org}&to=${dst}&date=${dd}-${mm}-${yyyy}&adult=1&child=0&infant=0&class=Economy`;
+    default:
+      return `https://www.google.com/search?q=tiket+pesawat+${org}+${dst}+${dateDash}`;
+  }
+}
+
+let alerts=[];
+try{alerts=JSON.parse(localStorage.getItem("ctm_alerts")||"[]")}catch(e){}
+
+const rp=n=>"Rp "+n.toLocaleString("id-ID");
+const minP=p=>Math.min(...Object.values(p));
+const cheapest=p=>Object.entries(p).sort((a,b)=>a[1]-b[1])[0];
+
+// =====================
+// AUTOCOMPLETE DATA
+// =====================
+const PLACES = {
+  pesawat:[
+    {name:"Jakarta",sub:"Soekarno-Hatta (CGK)",code:"CGK",icon:"ti-plane"},
+    {name:"Jakarta",sub:"Halim Perdanakusuma (HLP)",code:"HLP",icon:"ti-plane"},
+    {name:"Bali",sub:"I Gusti Ngurah Rai (DPS)",code:"DPS",icon:"ti-plane"},
+    {name:"Surabaya",sub:"Juanda (SUB)",code:"SUB",icon:"ti-plane"},
+    {name:"Yogyakarta",sub:"Yogyakarta International (YIA)",code:"YIA",icon:"ti-plane"},
+    {name:"Yogyakarta",sub:"Adisutjipto (JOG)",code:"JOG",icon:"ti-plane"},
+    {name:"Medan",sub:"Kualanamu (KNO)",code:"KNO",icon:"ti-plane"},
+    {name:"Makassar",sub:"Sultan Hasanuddin (UPG)",code:"UPG",icon:"ti-plane"},
+    {name:"Lombok",sub:"Zainuddin Abdul Madjid (LOP)",code:"LOP",icon:"ti-plane"},
+    {name:"Balikpapan",sub:"Sultan Aji Muhammad Sulaiman (BPN)",code:"BPN",icon:"ti-plane"},
+    {name:"Bandung",sub:"Husein Sastranegara (BDO)",code:"BDO",icon:"ti-plane"},
+    {name:"Semarang",sub:"Ahmad Yani (SRG)",code:"SRG",icon:"ti-plane"},
+    {name:"Palembang",sub:"Sultan Mahmud Badaruddin II (PLM)",code:"PLM",icon:"ti-plane"},
+    {name:"Manado",sub:"Sam Ratulangi (MDC)",code:"MDC",icon:"ti-plane"},
+    {name:"Batam",sub:"Hang Nadim (BTH)",code:"BTH",icon:"ti-plane"},
+    {name:"Pekanbaru",sub:"Sultan Syarif Kasim II (PKU)",code:"PKU",icon:"ti-plane"},
+    {name:"Pontianak",sub:"Supadio (PNK)",code:"PNK",icon:"ti-plane"},
+    {name:"Jayapura",sub:"Sentani (DJJ)",code:"DJJ",icon:"ti-plane"},
+    {name:"Kupang",sub:"El Tari (KOE)",code:"KOE",icon:"ti-plane"},
+    {name:"Singapura",sub:"Changi Airport (SIN)",code:"SIN",icon:"ti-plane",badge:"Internasional"},
+    {name:"Kuala Lumpur",sub:"KLIA (KUL)",code:"KUL",icon:"ti-plane",badge:"Internasional"},
+    {name:"Tokyo",sub:"Narita (NRT)",code:"NRT",icon:"ti-plane",badge:"Internasional"},
+    {name:"Dubai",sub:"Dubai International (DXB)",code:"DXB",icon:"ti-plane",badge:"Internasional"},
+  ],
+  kereta:[
+    {name:"Jakarta",sub:"Stasiun Gambir (GMR)",code:"GMR",icon:"ti-train"},
+    {name:"Jakarta",sub:"Stasiun Pasar Senen (PSE)",code:"PSE",icon:"ti-train"},
+    {name:"Jakarta",sub:"Stasiun Jatinegara (JNG)",code:"JNG",icon:"ti-train"},
+    {name:"Jakarta",sub:"Stasiun Tanah Abang (THB)",code:"THB",icon:"ti-train"},
+    {name:"Yogyakarta",sub:"Stasiun Tugu (YK)",code:"YK",icon:"ti-train"},
+    {name:"Yogyakarta",sub:"Stasiun Lempuyangan (LPN)",code:"LPN",icon:"ti-train"},
+    {name:"Surabaya",sub:"Stasiun Gubeng (SGU)",code:"SGU",icon:"ti-train"},
+    {name:"Surabaya",sub:"Stasiun Pasar Turi (SBI)",code:"SBI",icon:"ti-train"},
+    {name:"Bandung",sub:"Stasiun Bandung (BD)",code:"BD",icon:"ti-train"},
+    {name:"Semarang",sub:"Stasiun Tawang (SMT)",code:"SMT",icon:"ti-train"},
+    {name:"Solo",sub:"Stasiun Balapan (SLO)",code:"SLO",icon:"ti-train"},
+    {name:"Malang",sub:"Stasiun Malang (ML)",code:"ML",icon:"ti-train"},
+    {name:"Cirebon",sub:"Stasiun Cirebon (CN)",code:"CN",icon:"ti-train"},
+    {name:"Purwokerto",sub:"Stasiun Purwokerto (PWT)",code:"PWT",icon:"ti-train"},
+    {name:"Madiun",sub:"Stasiun Madiun (MN)",code:"MN",icon:"ti-train"},
+  ],
+  bus:[
+    {name:"Jakarta",sub:"Terminal Kampung Rambutan",code:"KR",icon:"ti-bus"},
+    {name:"Jakarta",sub:"Terminal Lebak Bulus",code:"LB",icon:"ti-bus"},
+    {name:"Jakarta",sub:"Terminal Pulo Gebang",code:"PG",icon:"ti-bus"},
+    {name:"Jakarta",sub:"Terminal Kalideres",code:"KD",icon:"ti-bus"},
+    {name:"Bandung",sub:"Terminal Leuwi Panjang",code:"LP",icon:"ti-bus"},
+    {name:"Bandung",sub:"Terminal Cicaheum",code:"CC",icon:"ti-bus"},
+    {name:"Yogyakarta",sub:"Terminal Giwangan",code:"GW",icon:"ti-bus"},
+    {name:"Surabaya",sub:"Terminal Bungurasih (Purabaya)",code:"PB",icon:"ti-bus"},
+    {name:"Semarang",sub:"Terminal Terboyo",code:"TB",icon:"ti-bus"},
+    {name:"Bali",sub:"Terminal Mengwi",code:"MW",icon:"ti-bus"},
+  ],
+  hotel:[
+    {name:"Bali",sub:"Seminyak · Kuta · Nusa Dua",code:"BAL",icon:"ti-building"},
+    {name:"Jakarta",sub:"SCBD · Sudirman · Thamrin",code:"JKT",icon:"ti-building"},
+    {name:"Yogyakarta",sub:"Malioboro · Prawirotaman",code:"YOG",icon:"ti-building"},
+    {name:"Lombok",sub:"Senggigi · Gili Trawangan",code:"LMB",icon:"ti-building"},
+    {name:"Surabaya",sub:"Gubeng · Darmo · Tunjungan",code:"SBY",icon:"ti-building"},
+    {name:"Bandung",sub:"Dago · Pasteur · Braga",code:"BDG",icon:"ti-building"},
+    {name:"Labuan Bajo",sub:"Flores · Raja Ampat",code:"LBJ",icon:"ti-building"},
+    {name:"Raja Ampat",sub:"Papua Barat",code:"RAA",icon:"ti-building"},
+    {name:"Singapura",sub:"Marina Bay · Orchard",code:"SIN",icon:"ti-building",badge:"Luar Negeri"},
+  ],
+};
+
+function getPlacesForMode(){
+  return PLACES[currentMode]||PLACES.pesawat;
+}
+
+function showDropdown(fieldId){
+  const input=document.getElementById(fieldId);
+  const ddId=fieldId+"-dd";
+  const dd=document.getElementById(ddId);
+  if(!dd)return;
+  const query=input.value.toLowerCase().trim();
+  const data=getPlacesForMode();
+  const filtered=query.length===0
+    ? data.slice(0,8)
+    : data.filter(p=>p.name.toLowerCase().includes(query)||p.sub.toLowerCase().includes(query)||p.code.toLowerCase().includes(query)).slice(0,8);
+  if(!filtered.length){dd.style.display="none";return;}
+  dd.innerHTML=filtered.map(p=>`
+    <div class="ac-item" onmousedown="selectPlace('${fieldId}','${p.name} (${p.code})')">
+      <div class="ac-icon"><i class="ti ${p.icon}"></i></div>
+      <div class="ac-main">
+        <div class="ac-name">${p.name}</div>
+        <div class="ac-code">${p.sub}</div>
+      </div>
+      ${p.badge?`<span class="ac-badge">${p.badge}</span>`:`<span style="font-size:12px;font-weight:700;color:var(--gray-300)">${p.code}</span>`}
+    </div>`).join("");
+  dd.style.display="block";
+}
+
+function hideDropdown(ddId,delay){
+  setTimeout(()=>{
+    const dd=document.getElementById(ddId);
+    if(dd)dd.style.display="none";
+  },delay||0);
+}
+
+function selectPlace(fieldId,value){
+  document.getElementById(fieldId).value=value;
+  hideDropdown(fieldId+"-dd",0);
+}
+
+// =====================
+// AUTH MODAL
+// =====================
+function showModal(type){
+  const modal=document.getElementById("auth-modal");
+  const content=document.getElementById("modal-content");
+  modal.style.display="flex";
+  if(type==="login"){
+    content.innerHTML=`
+      <div class="modal-title">Masuk ke CariTiketMurah</div>
+      <div class="modal-sub">Akses price alert, riwayat pencarian, dan deals eksklusif.</div>
+      <input class="modal-inp" type="email" placeholder="Email kamu">
+      <input class="modal-inp" type="password" placeholder="Password">
+      <button class="modal-btn" onclick="fakeLogin()">Masuk</button>
+      <div class="modal-divider">atau</div>
+      <button class="modal-btn" style="background:#fff;color:var(--gray-700);border:1.5px solid var(--gray-200);margin-bottom:8px" onclick="fakeLogin()"><i class="ti ti-brand-google" style="font-size:16px;vertical-align:-3px;margin-right:8px;color:#EA4335"></i>Masuk dengan Google</button>
+      <div class="modal-switch">Belum punya akun? <a onclick="showModal('register')">Daftar gratis</a></div>`;
+  } else {
+    content.innerHTML=`
+      <div class="modal-title">Daftar Gratis</div>
+      <div class="modal-sub">Gratis selamanya. Dapat price alert & notifikasi error fare!</div>
+      <input class="modal-inp" type="text" placeholder="Nama lengkap">
+      <input class="modal-inp" type="email" placeholder="Email aktif">
+      <input class="modal-inp" type="password" placeholder="Buat password">
+      <button class="modal-btn" onclick="fakeRegister()">Daftar Gratis Sekarang</button>
+      <div class="modal-divider">atau</div>
+      <button class="modal-btn" style="background:#fff;color:var(--gray-700);border:1.5px solid var(--gray-200)" onclick="fakeRegister()"><i class="ti ti-brand-google" style="font-size:16px;vertical-align:-3px;margin-right:8px;color:#EA4335"></i>Daftar dengan Google</button>
+      <div class="modal-switch">Sudah punya akun? <a onclick="showModal('login')">Masuk</a></div>`;
+  }
+}
+function closeModal(){document.getElementById("auth-modal").style.display="none";}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal();});
+function fakeLogin(){
+  document.getElementById("modal-content").innerHTML=`<div style="text-align:center;padding:20px 0"><div style="font-size:48px;margin-bottom:16px">✅</div><div style="font-size:18px;font-weight:700;color:var(--gray-900);margin-bottom:8px">Login berhasil!</div><div style="font-size:14px;color:var(--gray-500);margin-bottom:20px">Selamat datang kembali.</div><button class="modal-btn" onclick="closeModal()">Tutup</button></div>`;
+}
+function fakeRegister(){
+  document.getElementById("modal-content").innerHTML=`<div style="text-align:center;padding:20px 0"><div style="font-size:48px;margin-bottom:16px">🎉</div><div style="font-size:18px;font-weight:700;color:var(--gray-900);margin-bottom:8px">Akun berhasil dibuat!</div><div style="font-size:14px;color:var(--gray-500);margin-bottom:20px">Selamat datang di CariTiketMurah.com. Cek email untuk verifikasi.</div><button class="modal-btn" onclick="closeModal()">Mulai Cari Tiket</button></div>`;
+}
+
+// =====================
+// SWITCH TAB BY NAME
+// =====================
+function switchTabByName(mode){
+  const tabs=document.querySelectorAll(".stab");
+  const modeMap={pesawat:0,hotel:1,kereta:2,bus:3,paket:4,event:5,errorfares:-1};
+  const idx=modeMap[mode];
+  if(idx>=0&&tabs[idx]){switchTab(tabs[idx]);}
+  window.scrollTo({top:document.querySelector(".hero").offsetTop,behavior:"smooth"});
+}
+
+const MODE_CONFIG={
+  pesawat:{
+    label:"Pesawat",icon:"ti-plane",
+    fromPh:"Kota asal",toPh:"Kota tujuan",
+    fromVal:"Jakarta (CGK)",toVal:"Bali (DPS)",
+    fromLbl:"Dari",toLbl:"Ke",
+    paxOpts:["1 Dewasa · Ekonomi","2 Dewasa · Ekonomi","1 Dewasa · Bisnis","2 Dewasa · Bisnis"],
+    paxLbl:"Penumpang & Kelas",
+    tripOpts:["Sekali Jalan","Pulang Pergi","Multi-kota"],
+    showSwap:true,
+    platforms:["Traveloka","Tiket.com","Agoda","Tokopedia","Pegipegi"],
+  },
+  hotel:{
+    label:"Hotel",icon:"ti-building",
+    fromPh:"Kota atau nama hotel",toPh:"",
+    fromVal:"Bali",toVal:"",
+    fromLbl:"Lokasi",toLbl:"",
+    paxOpts:["1 Kamar · 2 Tamu","1 Kamar · 1 Tamu","2 Kamar · 4 Tamu"],
+    paxLbl:"Kamar & Tamu",
+    tripOpts:["Check-in","Check-out"],
+    showSwap:false,
+    platforms:["Traveloka","Tiket.com","Agoda","Tokopedia","Pegipegi"],
+  },
+  kereta:{
+    label:"Kereta",icon:"ti-train",
+    fromPh:"Stasiun asal",toPh:"Stasiun tujuan",
+    fromVal:"Jakarta (GMR/GAM)",toVal:"Yogyakarta (YK)",
+    fromLbl:"Dari Stasiun",toLbl:"Ke Stasiun",
+    paxOpts:["1 Penumpang · Ekonomi","2 Penumpang · Ekonomi","1 Penumpang · Eksekutif","2 Penumpang · Eksekutif"],
+    paxLbl:"Penumpang & Kelas",
+    tripOpts:["Sekali Jalan","Pulang Pergi"],
+    showSwap:true,
+    platforms:["KAI Access","Traveloka","Tiket.com","Tokopedia"],
+  },
+  bus:{
+    label:"Bus",icon:"ti-bus",
+    fromPh:"Kota asal",toPh:"Kota tujuan",
+    fromVal:"Jakarta",toVal:"Bandung",
+    fromLbl:"Dari",toLbl:"Ke",
+    paxOpts:["1 Penumpang","2 Penumpang","3 Penumpang"],
+    paxLbl:"Penumpang",
+    tripOpts:["Sekali Jalan","Pulang Pergi"],
+    showSwap:true,
+    platforms:["Traveloka","Tiket.com","Pegipegi"],
+  },
+  paket:{
+    label:"Paket Wisata",icon:"ti-bolt",
+    fromPh:"Kota keberangkatan",toPh:"Destinasi wisata",
+    fromVal:"Jakarta",toVal:"Bali",
+    fromLbl:"Dari Kota",toLbl:"Destinasi",
+    paxOpts:["1 Orang","2 Orang","3-4 Orang","5+ Orang"],
+    paxLbl:"Jumlah Peserta",
+    tripOpts:["Paket All-in","Custom"],
+    showSwap:false,
+    platforms:["Traveloka","Tiket.com","Pegipegi"],
+  },
+};
+
+const KERETA_DATA=[
+  {id:"k1",name:"Argo Bromo Anggrek",code:"KA-1",dep:"06:00",arr:"11:40",dur:"5j 40m",
+   prices:{"kai access":220000,traveloka:235000,tiket:228000,tokopedia:225000},normal:320000,deal:"deal",
+   note:"Harga 30% lebih murah dari biasanya — flash sale KAI!"},
+  {id:"k2",name:"Gajayana",code:"KA-47",dep:"07:30",arr:"14:00",dur:"6j 30m",
+   prices:{"kai access":185000,traveloka:195000,tiket:190000},normal:250000,deal:"normal"},
+  {id:"k3",name:"Taksaka Pagi",code:"KA-69",dep:"08:00",arr:"14:15",dur:"6j 15m",
+   prices:{"kai access":150000,traveloka:165000,tiket:158000,tokopedia:148000},normal:220000,deal:"error",
+   note:"AI deteksi harga 33% di bawah normal — kemungkinan error fare KAI!"},
+  {id:"k4",name:"Lodaya",code:"KA-81",dep:"09:00",arr:"16:30",dur:"7j 30m",
+   prices:{"kai access":120000,traveloka:130000,tiket:125000},normal:160000,deal:"normal"},
+  {id:"k5",name:"Bima",code:"KA-7",dep:"17:00",arr:"23:30",dur:"6j 30m",
+   prices:{"kai access":280000,traveloka:295000,tiket:288000,tokopedia:282000},normal:380000,deal:"deal",
+   note:"Flash sale malam — berakhir dalam 3 jam"},
+];
+
+const BUS_DATA=[
+  {id:"b1",name:"Rosalia Indah",code:"EXE-01",dep:"07:00",arr:"10:30",dur:"3j 30m",
+   prices:{traveloka:85000,tiket:80000,pegipegi:82000},normal:120000,deal:"deal",note:"Promo weekday — kursi AC executive"},
+  {id:"b2",name:"Pahala Kencana",code:"BIS-02",dep:"08:00",arr:"11:00",dur:"3j",
+   prices:{traveloka:65000,tiket:62000,pegipegi:60000},normal:90000,deal:"normal"},
+  {id:"b3",name:"Haryanto",code:"PRM-03",dep:"10:00",arr:"13:00",dur:"3j",
+   prices:{traveloka:45000,tiket:42000,pegipegi:40000},normal:70000,deal:"error",note:"AI deteksi harga sangat murah — cek ketersediaan kursi!"},
+];
+
+const HOTEL_DATA=[
+  {id:"h1",name:"The Mulia Bali",stars:5,area:"Nusa Dua",
+   prices:{traveloka:1850000,tiket:1780000,agoda:1650000,tokopedia:1700000},normal:2800000,deal:"deal",note:"Harga 40% di bawah rate normal — flash sale!"},
+  {id:"h2",name:"COMO Uma Canggu",stars:5,area:"Canggu",
+   prices:{traveloka:2200000,agoda:2100000,tiket:2150000},normal:3000000,deal:"normal"},
+  {id:"h3",name:"Katamama Boutique",stars:4,area:"Seminyak",
+   prices:{traveloka:850000,tiket:820000,agoda:790000,tokopedia:799000},normal:1200000,deal:"deal",note:"Harga terbaik bulan ini!"},
+  {id:"h4",name:"Pondok Sari",stars:3,area:"Ubud",
+   prices:{traveloka:350000,tiket:340000,agoda:320000},normal:450000,deal:"normal"},
+];
+
+function switchTab(el){
+  document.querySelectorAll(".stab").forEach(t=>t.classList.remove("on"));
+  el.classList.add("on");
+  const label=el.textContent.trim().toLowerCase();
+  if(label.includes("pesawat"))currentMode="pesawat";
+  else if(label.includes("hotel"))currentMode="hotel";
+  else if(label.includes("kereta"))currentMode="kereta";
+  else if(label.includes("bus"))currentMode="bus";
+  else currentMode="paket";
+  updateForm();
+  // Reset hasil
+  document.getElementById("results-col").innerHTML=`<div class="empty"><i class="ti ti-search"></i><div style="font-size:16px;font-weight:600;color:var(--gray-600);margin-bottom:6px">Cari ${MODE_CONFIG[currentMode].label} termurah</div><div style="font-size:14px">Masukkan rute & tanggal, AI scan platform sekaligus</div></div>`;
+  document.getElementById("alert-section").style.display="none";
+  document.getElementById("ai-panel").style.display="none";
+}
+
+function updateForm(){
+  const cfg=MODE_CONFIG[currentMode];
+  // Update placeholders & values
+  const fromEl=document.getElementById("from");
+  const toEl=document.getElementById("to");
+  const toWrap=document.getElementById("to-wrap");
+  const swapBtn=document.getElementById("swap-btn");
+  const fromLbl=document.getElementById("from-lbl");
+  const toLbl=document.getElementById("to-lbl");
+  const paxEl=document.getElementById("pax");
+  const paxLbl=document.getElementById("pax-lbl");
+  const tripOptsEl=document.getElementById("trip-opts");
+
+  fromEl.placeholder=cfg.fromPh;
+  fromEl.value=cfg.fromVal;
+  fromLbl.textContent=cfg.fromLbl;
+
+  if(cfg.toLbl&&cfg.toPh){
+    toWrap.style.display="";
+    toEl.placeholder=cfg.toPh;
+    toEl.value=cfg.toVal;
+    toLbl.textContent=cfg.toLbl;
+  } else {
+    toWrap.style.display="none";
+    toEl.value="";
+  }
+
+  if(swapBtn) swapBtn.style.display=cfg.showSwap?"":"none";
+
+  paxLbl.textContent=cfg.paxLbl;
+  paxEl.innerHTML=cfg.paxOpts.map(o=>`<option>${o}</option>`).join("");
+
+  tripOptsEl.innerHTML=cfg.tripOpts.map((o,i)=>`<div class="trip-opt ${i===0?"on":""}" onclick="setTrip(this)">${o}</div>`).join("");
+}
+
+function setTrip(el){document.querySelectorAll(".trip-opt").forEach(t=>t.classList.remove("on"));el.classList.add("on")}
+function swapCities(){const a=document.getElementById("from"),b=document.getElementById("to");[a.value,b.value]=[b.value,a.value]}
+function updateSlider(el){const v=parseInt(el.value);document.getElementById("pmax-lbl").textContent=v>=3000000?"Semua":rp(v)}
+
+function getDataForMode(){
+  if(currentMode==="kereta") return KERETA_DATA;
+  if(currentMode==="bus") return BUS_DATA;
+  if(currentMode==="hotel") return HOTEL_DATA;
+  return FLIGHTS;
+}
+
+function renderCard(f){
+  const mp=minP(f.prices);
+  const [cp]=cheapest(f.prices);
+  const disc=Math.round((1-mp/f.normal)*100);
+  let bclass="pb-normal",btxt=disc>0?`Hemat ${disc}%`:"Harga standar";
+  if(f.deal==="deal"){bclass="pb-deal";btxt=`Hemat ${disc}%`;}
+  if(f.deal==="error"){bclass="pb-error";btxt="Kemungkinan error fare";}
+  let cc=f.deal==="error"?"rcard is-error":f.deal==="deal"?"rcard is-deal":"rcard";
+  const PNAMESALL={...PNAMES,"kai access":"KAI Access"};
+
+  // Hotel card
+  if(currentMode==="hotel"){
+    return `<div class="${cc}">
+      <div class="card-top">
+        <div class="airline-ico" style="background:#FEF3C7;color:#92400E;font-size:11px">${"⭐".repeat(Math.min(f.stars,5))}</div>
+        <div class="card-main">
+          <div style="font-size:17px;font-weight:700;color:var(--gray-900)">${f.name}</div>
+          <div class="card-sub"><i class="ti ti-map-pin" style="font-size:13px;vertical-align:-2px"></i> ${f.area} &nbsp;·&nbsp; ${"★".repeat(f.stars)}${"☆".repeat(5-f.stars)} ${f.stars} bintang</div>
+        </div>
+        <div class="price-col">
+          <div class="p-orig">${rp(f.normal)}/malam</div>
+          <div class="p-final ${disc>25?"is-cheap":""}">${rp(mp)}</div>
+          <div class="p-badge ${bclass}">${f.deal==="error"?'<i class="ti ti-bolt" style="font-size:12px"></i>':f.deal==="deal"?'<i class="ti ti-flame" style="font-size:12px"></i>':''} ${btxt}</div>
+        </div>
+      </div>
+      ${f.note?`<div class="card-note ${f.deal==="error"?"note-error":"note-deal"}"><i class="ti ti-sparkles" style="font-size:13px;vertical-align:-2px;margin-right:4px"></i>${f.note}</div>`:""}
+      <hr class="card-divider">
+      <div class="card-bot">
+        <div>
+          <div class="prov-label">Tersedia di</div>
+          <div class="providers">${Object.entries(f.prices).sort((a,b)=>a[1]-b[1]).map(([pv,pr])=>`<span class="prov-pill ${pv===cp?"best":""}" onclick="bookNow('${f.name}','${pv}',${pr},'-')">${PNAMESALL[pv]||pv}${pv===cp?" · "+rp(pr):""}</span>`).join("")}</div>
+          <div class="aff-note">* Via program afiliasi resmi. Harga per malam, dapat berubah.</div>
+        </div>
+        <button class="btn-book" onclick="bookNow('${f.name}','${cp}',${mp},'-')">Pesan via ${PNAMESALL[cp]||cp} <i class="ti ti-arrow-right" style="font-size:15px"></i></button>
+      </div>
+    </div>`;
+  }
+
+  // Kereta / Bus / Pesawat card
+  const [ac,abg]=ACOLORS[f.airline||f.name]||["#374151","#F3F4F6"];
+  const nameShort=(f.airline||f.name||"").substring(0,2);
+  const icon=currentMode==="kereta"?"ti-train":currentMode==="bus"?"ti-bus":"ti-plane";
+  return `<div class="${cc}">
+    <div class="card-top">
+      <div class="airline-ico" style="background:${abg};color:${ac}"><i class="ti ${icon}" style="font-size:18px"></i></div>
+      <div class="card-main">
+        <div class="route-row">
+          <span class="t-dep">${f.dep}</span>
+          <div class="route-mid"><div class="route-line"></div><div class="route-dur">${f.dur}</div></div>
+          <span class="t-arr">${f.arr}</span>
+        </div>
+        <div class="card-sub">
+          <span>${f.airline||f.name}</span><span class="dot-sep">·</span>
+          <span>${f.code}</span><span class="dot-sep">·</span>
+          <span>${f.direct!==false?"Langsung":"Transit"}</span>
+        </div>
+      </div>
+      <div class="price-col">
+        <div class="p-orig">${rp(f.normal)}</div>
+        <div class="p-final ${disc>25?"is-cheap":""}">${rp(mp)}</div>
+        <div class="p-badge ${bclass}">${f.deal==="error"?'<i class="ti ti-bolt" style="font-size:12px"></i>':f.deal==="deal"?'<i class="ti ti-flame" style="font-size:12px"></i>':''} ${btxt}</div>
+      </div>
+    </div>
+    ${f.note?`<div class="card-note ${f.deal==="error"?"note-error":"note-deal"}"><i class="ti ti-${f.deal==="error"?"alert-triangle":"sparkles"}" style="font-size:13px;vertical-align:-2px;margin-right:4px"></i>${f.note}</div>`:""}
+    <hr class="card-divider">
+    <div class="card-bot">
+      <div>
+        <div class="prov-label">Tersedia di</div>
+        <div class="providers">${Object.entries(f.prices).sort((a,b)=>a[1]-b[1]).map(([pv,pr])=>`<span class="prov-pill ${pv===cp?"best":""}" title="${rp(pr)}" onclick="bookNow('${f.airline||f.name}','${pv}',${pr},'${f.code}')">${PNAMESALL[pv]||pv}${pv===cp?" · "+rp(pr):""}</span>`).join("")}</div>
+        <div class="aff-note">* Via program afiliasi resmi. Harga dapat berubah sewaktu-waktu.</div>
+      </div>
+      <button class="btn-book" onclick="bookNow('${f.airline||f.name}','${cp}',${mp},'${f.code}')">Pesan via ${PNAMESALL[cp]||cp} <i class="ti ti-arrow-right" style="font-size:15px"></i></button>
+    </div>
+  </div>`;
+}
+
+function doSearch(){
+  const budget=parseInt(document.getElementById("pslider").value);
+  const eff=budget>=3000000?Infinity:budget;
+  const fP=document.getElementById("f-promo").checked;
+  const fE=document.getElementById("f-errorfares").checked;
+  const cfg=MODE_CONFIG[currentMode];
+
+  const col=document.getElementById("results-col");
+  col.innerHTML=`<div class="loading"><div class="spin"></div><div class="loading-txt">AI memindai harga ${cfg.label} dari semua platform...</div><div class="loading-chips">${cfg.platforms.map((s,i)=>`<span class="l-chip" style="animation-delay:${i*.15}s">${s}</span>`).join("")}</div></div>`;
+
+  setTimeout(()=>{
+    let data=getDataForMode().filter(f=>{
+      if(fP&&f.deal==="normal")return false;
+      if(fE&&f.deal!=="error")return false;
+      if(minP(f.prices)>eff)return false;
+      return true;
+    });
+    const errors=data.filter(f=>f.deal==="error");
+    const deals=data.filter(f=>f.deal==="deal");
+    const lowest=data.length?Math.min(...data.map(f=>minP(f.prices))):0;
+    const lf=data.find(f=>minP(f.prices)===lowest);
+    const [lprov]=lf?cheapest(lf.prices):["—"];
+    const PNAMESALL={...PNAMES,"kai access":"KAI Access"};
+    const modeLabel={"pesawat":"penerbangan","kereta":"jadwal kereta","bus":"jadwal bus","hotel":"hotel","paket":"paket wisata"}[currentMode]||"hasil";
+
+    // AI Panel
+    document.getElementById("ai-panel").style.display="block";
+    document.getElementById("ai-body").innerHTML=`Gua nemuin <strong>${deals.length+errors.length} peluang hemat</strong> dari ${data.length} ${modeLabel}. Harga terendah hari ini <strong>${rp(lowest)}</strong> via <strong>${PNAMESALL[lprov]||lprov}</strong>.${errors.length?` <span style="color:#D97706;font-weight:600"> Ada ${errors.length} error fare!</span>`:""}`;
+    document.getElementById("ai-chips").innerHTML=`<button class="ai-chip" onclick="document.getElementById('f-errorfares').checked=true;doSearch()"><i class="ti ti-bolt" style="font-size:14px;vertical-align:-2px"></i> Error fares (${errors.length})</button><button class="ai-chip" onclick="document.getElementById('alert-section').style.display='block';document.getElementById('alert-section').scrollIntoView({behavior:'smooth'})"><i class="ti ti-bell" style="font-size:14px;vertical-align:-2px"></i> Set price alert</button>`;
+
+    let html="";
+    html+=`<div class="results-hd"><div class="results-count">Menemukan <strong>${data.length} ${modeLabel}</strong> dengan harga terbaik</div><div class="sort-row"><span class="sort-label">Urutkan:</span><select class="sort"><option>Harga terendah</option><option>Waktu berangkat</option><option>Deal terbaik</option></select></div></div>`;
+    html+=`<div class="stats-grid"><div class="stat"><div class="stat-n">${data.length}</div><div class="stat-l">${cfg.label}</div></div><div class="stat"><div class="stat-n c-blue">${cfg.platforms.length}</div><div class="stat-l">Platform dipindai</div></div><div class="stat"><div class="stat-n c-green">${deals.length}</div><div class="stat-l">Hot deals</div></div><div class="stat"><div class="stat-n c-amber">${errors.length}</div><div class="stat-l">Error fares</div></div></div>`;
+    if(errors.length){html+=`<div class="ef-banner"><i class="ti ti-alert-triangle ef-icon"></i><div><div class="ef-title">AI mendeteksi ${errors.length} kemungkinan error fare!</div><div class="ef-txt">Harga jauh di bawah rata-rata pasar. Pesan segera sebelum diperbaiki.</div></div></div>`;}
+
+    data.sort((a,b)=>minP(a.prices)-minP(b.prices)).forEach(f=>{
+      html+=renderCard(f);
+    });
+
+    if(!data.length)html=`<div class="empty"><i class="ti ti-search-off"></i><div style="font-size:15px;font-weight:600;color:var(--gray-600);margin-bottom:6px">Tidak ada hasil</div><div style="font-size:13px">Coba hapus beberapa filter</div></div>`;
+    col.innerHTML=html;
+    document.getElementById("alert-section").style.display="block";
+    document.getElementById("alrt-route").value=document.getElementById("from").value+(document.getElementById("to").value?" → "+document.getElementById("to").value:"");
+    renderAlerts();
+
+  },1700);
+}
+
+function bookNow(airline,prov,price,code){
+  const from=document.getElementById("from").value;
+  const to=document.getElementById("to").value;
+  const date=document.getElementById("dept").value;
+  const url=getDeepLink(prov,from,to,date,airline,code);
+  if(confirm(`Mau pesan ${airline} (${code}) via ${PNAMES[prov]||prov} seharga ${rp(price)}?\n\nKamu akan diarahkan ke halaman pencarian resmi ${PNAMES[prov]||prov} dengan rute ${from} → ${to}.`)){
+    window.open(url,"_blank");
+  }
+}
+
+function addAlert(){
+  const r=document.getElementById("alrt-route").value;
+  const p=parseInt(document.getElementById("alrt-price").value);
+  if(!r||!p){alert("Isi rute dan target harga dulu ya!");return;}
+  alerts.push({route:r,price:p,date:new Date().toLocaleDateString("id-ID")});
+  try{localStorage.setItem("ctm_alerts",JSON.stringify(alerts))}catch(e){}
+  document.getElementById("alrt-price").value="";
+  renderAlerts();
+}
+
+function delAlert(i){
+  alerts.splice(i,1);
+  try{localStorage.setItem("ctm_alerts",JSON.stringify(alerts))}catch(e){}
+  renderAlerts();
+}
+
+function renderAlerts(){
+  const al=document.getElementById("alert-list");
+  const sl=document.getElementById("sidebar-alerts");
+  if(!alerts.length){
+    if(al)al.innerHTML="";
+    if(sl)sl.innerHTML=`<p style="font-size:13px;color:var(--gray-400)">Belum ada alert aktif.</p>`;
+    return;
+  }
+  const h=alerts.map((a,i)=>`<div class="a-item"><i class="ti ti-bell" style="color:var(--blue);font-size:16px;flex-shrink:0"></i><span class="a-route">${a.route}</span><span class="a-price">< ${rp(a.price)}</span><span style="font-size:11px;color:var(--gray-400)">${a.date}</span><button class="a-del" onclick="delAlert(${i})"><i class="ti ti-x"></i></button></div>`).join("");
+  if(al)al.innerHTML=h;
+  if(sl)sl.innerHTML=`<div style="display:flex;flex-direction:column;gap:7px">${alerts.map((a,i)=>`<div style="padding:8px 11px;background:#EFF6FF;border-radius:var(--r-sm);font-size:12px;display:flex;justify-content:space-between;align-items:center;gap:8px"><div><div style="font-weight:600;color:var(--gray-800)">${a.route}</div><div style="color:var(--green);font-weight:700">< ${rp(a.price)}</div></div><button onclick="delAlert(${i})" style="background:none;border:none;cursor:pointer;color:var(--gray-300);font-size:15px"><i class="ti ti-x"></i></button></div>`).join("")}</div>`;
+}
+
+renderAlerts();
+</script>
+</body>
+</html>
